@@ -20,3 +20,16 @@ module "eks_cluster" {
 ```
 
 See `outputs.tf` for what it exposes (endpoint, CA data, OIDC provider ARN/URL, etc).
+
+## CI / Releasing
+
+[`.github/workflows/terraform-ci.yml`](.github/workflows/terraform-ci.yml)
+runs `terraform fmt -check` + `terraform init` + `terraform validate` on
+every push to `main` and every pull request.
+
+To cut a new release tag: **Actions** tab → **Terraform CI** → **Run
+workflow** → pick `patch`/`minor`/`major` from the `bump` dropdown (leave as
+`none` for a validate-only run). It reads the latest `vX.Y.Z` tag, bumps it,
+and pushes the new tag — using the workflow's built-in `GITHUB_TOKEN`, no
+extra credentials to set up. Consumers pin to that tag via `?ref=vX.Y.Z` in
+their `source` — see **Usage** above.
