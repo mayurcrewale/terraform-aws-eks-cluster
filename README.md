@@ -10,7 +10,7 @@ Defaults to a private-only API endpoint (`endpoint_private_access = true`,
 
 ```hcl
 module "eks_cluster" {
-  source = "git::https://example.com/your-org/terraform-aws-eks-cluster.git?ref=v1.0.0"
+  source = "git::git@github.com:mayurcrewale/terraform-aws-eks-cluster.git?ref=v1.0.0"
 
   cluster_name       = "hello-world-poc"
   kubernetes_version = "1.36"
